@@ -16,10 +16,17 @@
         (t (cons (car lst) (rmNode (cdr lst) (- n 1))))))
   
 ;;Поиск эл-та
-(defun findNode (x s)
-   (cond ((null s) nil)
-         ((equal x (car s)) 0)
-         (t (+ 1 (findNode x (cdr s))))))
+;;(defun findNode (x s)
+;;   (cond ((null s) nil)
+;;         ((equal x (car s)) 0)
+;;         (t (+ 1 (findNode x (cdr s))))))
+
+;;Поиск эл-та (исправленный)
+(defun findNode(x s position)
+    (cond ((eq s nil) "Элемент не найден")
+          ((= x (car s)) position)
+          (T (findNode x (cdr s) (+ position 1)))
+))
 
 
 ;;Вывод данных
@@ -29,4 +36,7 @@
  
 (format t "Список после удаления '-10':             ~a~%" (rmNode (tst_lst) 3))
 
-(format t "Индекс элемента 232:                     ~a~%" (findNode 232 (tst_lst))) 
+;;(format t "Индекс элемента 232:                     ~a~%" (findNode 2 (tst_lst))) 
+
+(format t "Результат поиска элемента 69:            ~a~%" (findNode 69 (tst_lst) 0))
+(format t "Результат поиска элемента 669:           ~a~%" (findNode 669 (tst_lst) 0))
